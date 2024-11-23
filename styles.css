@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --bg-dark: #1a1a1a;
+    --bg-darker: #121212;
+    --accent-color: #2196F3;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --danger: #ff4444;
+    --success: #00C851;
+    --card-bg: #242424;
+    --input-bg: #333333;
+    --hover-bg: #2c2c2c;
+}
+
+.navbar {
+    background: var(--bg-darker);
+    color: var(--accent-color);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-title {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin: 0;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.nav-content i {
+    font-size: 1.5rem;
+}
+
+body {
+    background: var(--bg-dark);
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: var(--bg-darker);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 95%;
+}
+
+.input-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+#todo-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: var(--input-bg);
+    color: var(--text-primary);
+}
+
+#todo-input::placeholder {
+    color: var(--text-secondary);
+}
+
+#todo-input:focus {
+    outline: 1px solid var(--accent-color);
+}
+
+#add-button {
+    padding: 0.8rem 1.5rem;
+    background: var(--accent-color);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    white-space: nowrap;
+    min-width: 100px;
+}
+
+#add-button:hover {
+    background: #1976D2;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: var(--card-bg);
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    gap: 1rem;
+    flex-wrap: wrap;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.todo-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.todo-content {
+    flex: 1;
+    min-width: 200px;
+    word-break: break-word;
+}
+
+.todo-text {
+    margin-bottom: 0.5rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    color: var(--text-primary);
+    padding: 0.3rem 1.8rem 0.3rem 0.3rem;
+    border-radius: 3px;
+    transition: all 0.2s;
+    cursor: pointer;
+    position: relative;
+}
+
+.todo-text::after {
+    content: '\f303';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 0.3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+    color: var(--accent-color);
+}
+
+.todo-text:hover::after {
+    opacity: 1;
+}
+
+.todo-text:focus {
+    background: var(--input-bg);
+    outline: 2px solid var(--accent-color);
+    cursor: text;
+    padding: 0.3rem;
+}
+
+.todo-text:hover:not(:focus) {
+    background: var(--hover-bg);
+}
+
+.todo-text.editing {
+    background: var(--input-bg);
+    outline: 2px solid var(--accent-color);
+}
+
+.todo-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.delete-btn {
+    background: var(--danger);
+    color: var(--text-primary);
+}
+
+.delete-btn:hover {
+    background: #cc0000;
+    transform: scale(1.05);
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+    color: var(--text-secondary);
+}
+
+/* Media Queries */
+@media screen and (max-width: 480px) {
+    .navbar {
+        padding: 0.8rem;
+    }
+
+    .nav-content {
+        justify-content: center;
+    }
+
+    .container {
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+
+    .input-section {
+        flex-direction: column;
+    }
+
+    #add-button {
+        width: 100%;
+    }
+
+    .todo-item {
+        padding: 0.8rem;
+    }
+
+    .todo-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    .edit-btn, .delete-btn {
+        padding: 0.8rem;
+    }
+
+    #add-button {
+        padding: 1rem 1.5rem;
+    }
+} 
